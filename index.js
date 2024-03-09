@@ -11,17 +11,29 @@ numbers.forEach((num) =>
   })
 );
 
-operators.forEach((operator) =>
-  operator.addEventListener("click", () => {
-    display.value += operator.value;
-  })
-);
-
 clearDisplay.addEventListener("click", () => (display.value = ""));
 
 deleteNumber.addEventListener("click", () => {
   display.value = display.value.toString().slice(0, -1);
 });
+
+operators.forEach((operator) =>
+  operator.addEventListener("click", () => {
+    let result = ''
+    let x = display.value
+
+
+    if (operator.value == "π") {
+      let pi = Math.PI;
+      result = x * pi
+      display.value = result;
+    } else if (operator.value == "√") {
+      display.value =  Math.sqrt(x);
+    } else {
+      display.value += operator.value;
+    }
+  })
+);
 
 evalBtn.addEventListener("click", () => {
   display.value = eval(display.value);
